@@ -1,0 +1,2 @@
+I have done half of the requirements of this project I have mad 2 classes one for Product and other is ProductMange in ProductManage i have done all the operations add,update,delete,view,viewbyID also i have done file handling in it in that case where it can read from memory and write it on file that i created also i have push this code in GitHub and i make branch of it name main where you can access my cod
+
