@@ -1,5 +1,11 @@
+110,Shirt,100.0
 100,Jeans,2900.0
+111,Laptop,100000.0
 101,Pent,3500.0
 103,shoes,10000.0
 104,watches,3560.0
 105,rings,2300.0
+106,Braclet,2000.0
+107,Wallet,3500.0
+108,Bagpack,1000.0
+109,Chain,500.0

@@ -5,7 +5,8 @@ import java.util.List;
 
 class ProductManage {
     private HashMap<String, Product> products = new HashMap<>();
-    private final String File_Name = "product.txt";  // i use final keyword so that it cannot be change afterward
+    private final String File_Name = "product.txt";
+    private final String Sales_File = "sales.txt";// i use final keyword so that it cannot be change afterward
     private List<Product> currentCart = new ArrayList<>();
     private List<Sale> sales = new ArrayList<>();
     private Sale lastSale = null;
@@ -55,8 +56,38 @@ class ProductManage {
         }
         System.out.println("Total: $" + sale.getTotal());
         currentCart.clear();
+        saveSaleToFile(sale);
     }
-    public void viewAllsale() {
+    public void saveSaleToFile(Sale sale) {// this method help to write data on file for future use
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(Sales_File,true))){//here using true because it append the data in file i have learn from online
+         writer.write("Transaction ID:"+ sale.getTransactionId());
+         writer.newLine();
+         for(Product p: sale.getItems()){
+             writer.write("Product:   " + p.getName() + "Price: &" + p.getPrice());
+             writer.newLine();
+         }
+         writer.write("Total amount: $"+ sale.getTotal());
+         writer.newLine();
+            System.out.println("---------------------------");
+            writer.newLine();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    public void loadSalesFiles(){//this method load data from file
+        try (BufferedReader reader = new BufferedReader(new FileReader(Sales_File))) {
+            String line;
+            System.out.println("\nPrevious Sale ");
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);
+            }
+        } catch (IOException e) {
+            System.out.println("No previous sale found.");
+        }
+    }
+        public void viewAllsale() {
         if (sales.isEmpty()) {
             System.out.println("No sales found");
             return;
